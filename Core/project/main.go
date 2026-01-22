@@ -1,4 +1,4 @@
-package project
+package main
 
 import "fmt"
 
@@ -18,11 +18,17 @@ var levelNames = []string{
 	"DEBUG",
 }
 
-func printLevel(level LogLevel) {
+// el metodo implementa la interfaz String, cuando se llame a algo.String() este es ejecutado
+func (level LogLevel) String() string {
 	if level < 0 || level > LogLevel(len(levelNames)-1) {
 		panic("Invalid log level")
 	}
-	fmt.Println(levelNames[level])
+	return levelNames[level]
+}
+
+func printLevel(level LogLevel) {
+	// imprimir por pantalla definiendo un formato de salida
+	fmt.Printf("Log level: %d %s\n", level, level.String())
 }
 
 func main() {
